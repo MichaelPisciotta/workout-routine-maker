@@ -5,16 +5,16 @@ import SignUp from "./components/SignUp";
 
 function App() {
 
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
 
-  useEffect(() => {
-    fetch("/users")
-      .then((r) => r.json())
-      .then(data => {
-        console.log("users", data)
-        setUsers(data)
-      });
-  }, [])
+  // useEffect(() => {
+  //   fetch("/users")
+  //     .then((r) => r.json())
+  //     .then(data => {
+  //       console.log("users", data)
+  //       setUsers(data)
+  //     });
+  // }, [])
 
   return (
     <div className="App">

@@ -16,11 +16,13 @@ const SignUp = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username,
-                password,
-                password_confirmation: passwordConf
-            })
-          })
+                user: {
+                    username,
+                    password,
+                    password_confirmation: passwordConf
+                }//end of user:
+            })//end of stringify
+          })//end of fetch statement
             .then(resp =>{
                 if (resp.ok){
                     resp.json().then(data => {
@@ -28,11 +30,11 @@ const SignUp = () => {
                         setUsername("")
                         setPassword("")
                         setPasswordConf("")
-                    })
+                    })//end of second .then
                 } else {
                     console.warn("signup not successful")
                 }
-            })
+            })//end of first .then
 
     } //end of handleSubmit function
 
