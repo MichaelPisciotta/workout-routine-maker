@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def create
+      byebug
       user = User.create(user_params)
       render json: user, status: :created
   end 
@@ -45,7 +46,7 @@ private
   end
 
   def user_params
-      params.permit(:username, :password, :password_confirmation)
+      params.require(:user).permit(:username, :password, :password_confirmation)
   end 
 
   def render_user_not_found
