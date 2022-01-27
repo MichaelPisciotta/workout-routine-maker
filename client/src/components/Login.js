@@ -36,10 +36,10 @@ const Login = () => {
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor="username">Create Username:</label>
+                <label htmlFor="username">Enter Username:</label>
                 <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 
-                <label htmlFor="password">Create Password:</label>
+                <label htmlFor="password">Enter Password:</label>
                 <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 
                 <button type="submit">Login</button>

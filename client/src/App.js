@@ -10,13 +10,28 @@ function App() {
   // const [users, setUsers] = useState([])
 
   // useEffect(() => {
-  //   fetch("/users")
+  //   fetch("/me")
   //     .then((r) => r.json())
   //     .then(data => {
   //       console.log("users", data)
   //       setUsers(data)
   //     });
   // }, [])
+
+  useEffect(() => {
+    fetch("/me")
+     .then(r => {
+       if(r.ok){
+         r.json().then( data => {
+           console.log("Logged In:", data.user)
+       })//end of second .then
+       } else {
+          console.log("No one is logged in")
+       }//end of else
+     })//end of first .then
+  }, []) //end of useEffect
+
+
 
   return (
     <div className="App">

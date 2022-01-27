@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   end
 
   def show
-      find_user
-      if user 
+    user = User.find(id: session[:user_id])
+    if user 
           render json: user, status: 200
       else
-          render_user_not_found
-      end
+        render json: {message: "Not logged in"}, status: :unauthorized 
+    end
   end
 
   def create
