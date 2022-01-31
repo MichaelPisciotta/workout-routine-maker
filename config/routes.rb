@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :routines
   resources :users, only: [:index, :create, :update, :destroy]
   get "/me", to: "users#show"
   post "/login", to: "sessions#login"
