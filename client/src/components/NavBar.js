@@ -10,7 +10,7 @@ const NavBar = ({user, setUser}) => {
             <nav>      
                 <NavLink exact to="/user">User Profile</NavLink>
                 <NavLink exact to="/routine/new">Create Routine</NavLink>
-                {/* <NavLink exact to="/exercise/new">Create Exercise</NavLink> */}
+                <NavLink exact to="/exercise/new">Add Exercises</NavLink>
                 <NavLink exact to="/routines">Routines</NavLink>
                 {user ? <LogoutButton className="logout" user={user} setUser={setUser} /> : null}
             </nav>

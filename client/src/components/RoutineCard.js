@@ -4,7 +4,7 @@ import React from 'react'
 const RoutineCard = ({routines}) => {
 
     //need list of associated exercises:
-    //RoutineExercises = exercises.map(exercise.routine_id === routine.id => <ExerciseCard key={exercise.id} />)
+    // RoutineExercises = exercises.map(exercise.routine_id === routine.id => <ExerciseCard key={exercise.id} />)
 
     return (
         <div>

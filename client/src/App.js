@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar";
 import CreateRoutine from "./components/CreateRoutine";
 import RoutineList from "./components/RoutineList";
 import User from "./components/User";
+import CreateExercise from "./components/CreateExercise";
+
 
 
 
@@ -49,24 +51,24 @@ function App() {
       });
   }, [])
 
-  // useEffect(() => {
-  //   fetch("/exercises")
-  //     .then((r) => r.json())
-  //     .then(data => {
-  //       console.log("exercises", data)
-  //       setExercises(data)
-  //     });
-  // }, [])
+  useEffect(() => {
+    fetch("/exercises")
+      .then((r) => r.json())
+      .then(data => {
+        console.log("exercises", data)
+        setExercises(data)
+      });
+  }, [])
 
   function addRoutine(newRoutine){
     const updatedRoutines = [...routines, newRoutine]
     setRoutines(updatedRoutines)
   }
 
-  // function addExercise(newExercise){
-  //   const updatedExercises = [...exercises, newExercise]
-  //   setExercises(updatedExercises)
-  // }
+  function addExercise(newExercise){
+    const updatedExercises = [...exercises, newExercise]
+    setExercises(updatedExercises)
+  }
 
 
   return (
@@ -76,10 +78,10 @@ function App() {
               <Routes>
                 <Route exact path="/user" element={<User user={user} />} />
                 <Route exact path="/routine/new" element={<CreateRoutine addRoutine={addRoutine} routines={routines} exercises={exercises}/>} user={user} />
-                {/* <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} routines={routines}/>} /> */}
+                <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} setExercises={setExercises} routines={routines}/>} />
                 <Route exact path="/routines" element={<RoutineList routines={routines} user={user} />} />
-                <Route exact path="/login" element={<Login user={user} />} />
-                <Route exact path="/sign" element={<SignUp user={user} />} />
+                <Route exact path="/login" element={<Login user={user} setUser={setUser} />} />
+                <Route exact path="/sign" element={<SignUp user={user} setUser={setUser} />} />
                 <Route exact path="*" element={<h1>404 not found</h1>} />
               </Routes>
       </BrowserRouter>

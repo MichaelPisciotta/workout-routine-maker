@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Navigate } from 'react-router-dom';
 
-const SignUp = ({user}) => {
-
+const SignUp = ({user, setUser}) => {
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConf, setPasswordConf] = useState("");
@@ -28,9 +28,10 @@ const SignUp = ({user}) => {
                 if (resp.ok){
                     resp.json().then(data => {
                         console.log("signup successful: ", data)
-                        setUsername("")
-                        setPassword("")
-                        setPasswordConf("")
+                        // setUsername("")
+                        // setPassword("")
+                        // setPasswordConf("")
+                        return <Navigate to="/login" />  //not working               
                     })//end of second .then
                 } else {
                     console.warn("signup not successful")
@@ -39,9 +40,11 @@ const SignUp = ({user}) => {
 
     } //end of handleSubmit function
 
-    if(user){
-        return <Navigate to="/user" />
-     }
+    // if(user){
+    //     return <Navigate to="/user" />
+    //  }
+    // ^not working just doesnt allow access to signup
+
     return (
         <div className="auth-container">
             <h1>Sign up Today!</h1>

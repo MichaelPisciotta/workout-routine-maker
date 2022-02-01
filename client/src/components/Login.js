@@ -28,17 +28,20 @@ const Login = ({user}) => {
             setUsername("")
             setPassword("")
         }) //end of second .then
-        return <Navigate to="/user" /> //go to user page when logging in
+        return <Navigate to="/user" /> //go to user page after logging in, NOT WORKING
     } //end of handSubmit
 
 
    function handleOnClick() {
         return <Navigate to="/sign" />
    } 
+   {/* ^isnt working */}
 
-    if(user){
-        return <Navigate to="/user" />
-     }
+    // if(user){
+    //     return <Navigate to="/user" />
+    //  }
+    // ^not correctly telling if user is signed in or not, pretty much just mskes login unaccesible
+
     return (
         <div className="auth-container">
             <h1>Login</h1>
@@ -53,6 +56,7 @@ const Login = ({user}) => {
                 <button type="submit">Login</button>
 
                 <button onClick={handleOnClick}>Sign Up</button>
+                
 
             </form>
         </div>
