@@ -13,7 +13,7 @@ import User from "./components/User";
 
 function App() {
 
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState(false)
   const [routines, setRoutines] = useState([])
   const [exercises, setExercises] = useState([])
 
@@ -32,11 +32,11 @@ function App() {
   }, []) //end of useEffect
 
   useEffect(() => {
-    fetch("/users")
+    fetch("/user")
       .then((r) => r.json())
       .then(data => {
-        console.log("users", data)
-        setUsers(data)
+        console.log("user", data)
+        setUser(data)
       });
   }, [])
 
@@ -72,14 +72,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-              <NavBar />
+              <NavBar user={user} setUser={setUser}/>
               <Routes>
-                <Route exact path="/user" element={<User users={users} />} />
-                <Route exact path="/routine/new" element={<CreateRoutine addRoutine={addRoutine} routines={routines} exercises={exercises}/>} />
+                <Route exact path="/user" element={<User user={user} />} />
+                <Route exact path="/routine/new" element={<CreateRoutine addRoutine={addRoutine} routines={routines} exercises={exercises}/>} user={user} />
                 {/* <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} routines={routines}/>} /> */}
-                <Route exact path="/routines" element={<RoutineList routines={routines}/>} />
-                <Route exact path="/login" element={<Login/>} />
-                <Route exact path="/sign" element={<SignUp/>} />
+                <Route exact path="/routines" element={<RoutineList routines={routines} user={user} />} />
+                <Route exact path="/login" element={<Login user={user} />} />
+                <Route exact path="/sign" element={<SignUp user={user} />} />
                 <Route exact path="*" element={<h1>404 not found</h1>} />
               </Routes>
       </BrowserRouter>

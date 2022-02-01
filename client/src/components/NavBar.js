@@ -1,14 +1,18 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
+import LogoutButton from './LogoutButton'
 
-const NavBar = () => {
+
+const NavBar = ({user, setUser}) => {
+
     return (
         <div>
-            <nav>        
+            <nav>      
                 <NavLink exact to="/user">User Profile</NavLink>
                 <NavLink exact to="/routine/new">Create Routine</NavLink>
                 {/* <NavLink exact to="/exercise/new">Create Exercise</NavLink> */}
                 <NavLink exact to="/routines">Routines</NavLink>
+                {user ? <LogoutButton className="logout" user={user} setUser={setUser} /> : null}
             </nav>
             
         </div>

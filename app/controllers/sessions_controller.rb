@@ -12,4 +12,10 @@ class SessionsController < ApplicationController
 
     end #end of login method
 
+
+    def logout
+        session.destroy
+        render json: {message: "Logged_out"}, status: 200
+    end #end of logout
+
 end #end of controller

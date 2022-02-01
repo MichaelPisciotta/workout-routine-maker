@@ -1,7 +1,7 @@
 import React from 'react'
 // import ExerciseCard from "./ExerciseCard";
 
-const RoutineCard = (routines) => {
+const RoutineCard = ({routines}) => {
 
     //need list of associated exercises:
     //RoutineExercises = exercises.map(exercise.routine_id === routine.id => <ExerciseCard key={exercise.id} />)

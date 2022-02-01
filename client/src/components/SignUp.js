@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import { Navigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = ({user}) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -38,7 +39,9 @@ const SignUp = () => {
 
     } //end of handleSubmit function
 
-
+    if(user){
+        return <Navigate to="/user" />
+     }
     return (
         <div className="auth-container">
             <h1>Sign up Today!</h1>

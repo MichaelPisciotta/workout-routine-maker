@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import { Navigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({user}) => {
 
     const [username, setUsername] = useState([])
     const [password, setPassword] = useState([])
@@ -30,7 +31,13 @@ const Login = () => {
     } //end of handSubmit
 
 
+   function handleOnClick() {
+        return <Navigate to="/sign" />
+   } 
 
+    if(user){
+        return <Navigate to="/user" />
+     }
     return (
         <div className="auth-container">
             <h1>Login</h1>
@@ -43,6 +50,9 @@ const Login = () => {
                 <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 
                 <button type="submit">Login</button>
+
+                <button onClick={handleOnClick}>Sign Up</button>
+
             </form>
         </div>
     )
