@@ -28,6 +28,7 @@ const Login = ({user}) => {
             setUsername("")
             setPassword("")
         }) //end of second .then
+        return <Navigate to="/user" /> //go to user page when logging in
     } //end of handSubmit
 
 
