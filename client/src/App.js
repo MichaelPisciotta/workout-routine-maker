@@ -5,6 +5,8 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import CreateRoutine from "./components/CreateRoutine";
+import RoutineList from "./components/RoutineList";
+import User from "./components/User";
 
 
 
@@ -72,10 +74,10 @@ function App() {
       <BrowserRouter>
               <NavBar />
               <Routes>
-                {/* <Route exact path="/user" element={<User users={users} />} /> */}
+                <Route exact path="/user" element={<User users={users} />} />
                 <Route exact path="/routine/new" element={<CreateRoutine addRoutine={addRoutine} routines={routines} exercises={exercises}/>} />
-                {/* <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} routines={routines}/>} />
-                <Route exact path="/routines" element={<RoutineList routines={routines}/>} /> */}
+                {/* <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} routines={routines}/>} /> */}
+                <Route exact path="/routines" element={<RoutineList routines={routines}/>} />
                 <Route exact path="/login" element={<Login/>} />
                 <Route exact path="/sign" element={<SignUp/>} />
                 <Route exact path="*" element={<h1>404 not found</h1>} />

@@ -45,7 +45,7 @@ private
     end
 
     def routine_params
-        params.permit(:title, :description)
+        params.require(:user).permit(:title, :description)
     end 
 
     def render_routine_not_found

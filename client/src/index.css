@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  height: 23px;
+  overflow: hidden;
+  background-color: #333;
+  
+}
+
+
+nav a {
+  display: inline;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-right: 30px;
+  padding-left: 30px;
+  font-size: 20px;
+
+}
+
+nav a:hover {
+  background-color: rgb(244, 206, 206);
+}
+
+nav a.active {
+  background-color: red;
+  color: white;
+}
