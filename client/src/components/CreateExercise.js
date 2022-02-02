@@ -4,17 +4,18 @@ import { useNavigate } from 'react-router-dom';
 const CreateExercise = ({exercises, addExercise, routines}) => {
 
 
-    let history = useNavigate();
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [loading, setLoading] = useState(false)
     const [choice, setChoice] = useState("")
+    
+
 
     const handleChoice = (e) => {
         setChoice(e.target.value)
     } 
     const pickRoutine = routines.map(routine => <option value={routine.id}  key={routine.id} data-id={routine.id}>{routine.name}</option>)
-
+ {/* ^NOT WORKING */}
       
     function handleSubmit(e) {
         e.preventDefault()
@@ -39,10 +40,8 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
                 setDescription("")
                 setTimeout(() => {
                     setLoading(false)
-                    history.push("/exercises");      
                 } ,1000)
             })   
-
     };
 
     return (
@@ -57,9 +56,10 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
                 <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
 
                 <select name="routine" className="form-select" aria-label="Default select example" onChange={handleChoice}>
-                    <option selected>Select Routine</option>
-                    {pickRoutine}
+                    <option defaultValue>Select Routine</option>
+                    {pickRoutine} 
                 </select>
+                {/* ^NOT WORKING */}
 
 
                 <button type="submit">{loading ? "loading..." : "Create New Exercise"}</button>

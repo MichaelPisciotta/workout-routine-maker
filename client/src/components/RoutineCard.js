@@ -8,10 +8,19 @@ const RoutineCard = ({routines}) => {
 
     return (
         <div>
-         <li>Title</li>
+         <br></br>
+         <br></br>
+
+         <h1>Title</h1>
          <li>Description</li>
+
+         <li>Exercises:</li>
+         <li>Exercise 1</li>
+         <li>Exercise 2</li>
+         <li>Exercise 3</li>
+
          {/* {RoutineExercises} */}
-           
+
          <button>Delete</button>
          <button>Update</button>
         </div>

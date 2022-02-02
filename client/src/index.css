@@ -15,7 +15,7 @@ code {
 nav {
   height: 23px;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(21, 213, 226);
   
 }
 
@@ -32,11 +32,11 @@ nav a {
 }
 
 nav a:hover {
-  background-color: rgb(244, 206, 206);
+  background-color: rgb(243, 229, 229);
 }
 
 nav a.active {
-  background-color: #333;
+  background-color: rgb(243, 229, 229);
   color: white;
 }
 
@@ -54,4 +54,8 @@ nav a.active {
   padding-right: 30px;
   padding-left: 30px;
   font-size: 20px;
+}
+
+.App{
+  background-color: rgb(243, 229, 229);
 }
