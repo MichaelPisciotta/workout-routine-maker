@@ -14,8 +14,15 @@ class RoutinesController < ApplicationController
     end
 
     def create
-        routine = Routine.create(routine_params)
-        render json: routine, status: :created
+        user = User.find_by(id: session[:user_id]) #make current user method with this line 
+        routine = Routine.new(routine_params) #look into build method intead of using new 
+        routine.user_id = user.id
+        if routine.save     
+            render json: routine, status: :created
+        else
+            render json: {error: routine.errors.full_messages}, status: :not_found
+        end
+
     end 
 
     def update

@@ -17,10 +17,11 @@ const CreateRoutine = ({exercises, routines, addRoutine}) => {
         e.preventDefault()
         const routineObj = { 
             title: title,
-            description: description,
+            description: description
             //user_id: owner
         }
         setLoading(true)
+        console.log("about to send POST")
         fetch("/routines", {
             method: "POST",
             headers: {
@@ -30,6 +31,7 @@ const CreateRoutine = ({exercises, routines, addRoutine}) => {
         })
             .then(r => r.json())
             .then(data => {
+                console.log(data)
                 //debugger;
                 addRoutine(data)
                 setTitle("")
@@ -57,8 +59,6 @@ const CreateRoutine = ({exercises, routines, addRoutine}) => {
                 <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
 
                 
-
-           
 
 
                 <button type="submit">{loading ? "loading..." : "Create New Routine"}</button>
