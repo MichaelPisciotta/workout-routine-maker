@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({user, setUser}) => {
     
@@ -28,10 +28,11 @@ const SignUp = ({user, setUser}) => {
                 if (resp.ok){
                     resp.json().then(data => {
                         console.log("signup successful: ", data)
+                        setUser(data)
                         // setUsername("")
                         // setPassword("")
                         // setPasswordConf("")
-                        return <Navigate to="/login" />  //not working               
+                        return <useNavigate to="/login" />  //not working               
                     })//end of second .then
                 } else {
                     console.warn("signup not successful")

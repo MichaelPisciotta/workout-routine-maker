@@ -11,9 +11,12 @@ const LogoutButton = ({user, setUser}) => {
             setUser(false)
         })
     }//end of onclick
+
     return (
         <button onClick={handleOnClick}>Logout</button>
     )
+
 } //end of LogoutButton function 
 
+ 
 export default LogoutButton

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({user}) => {
 
@@ -28,19 +28,21 @@ const Login = ({user}) => {
             setUsername("")
             setPassword("")
         }) //end of second .then
-        return <Navigate to="/user" /> //go to user page after logging in, NOT WORKING
+        return <useNavigate to="/user" /> //go to user page after logging in, NOT WORKING
     } //end of handSubmit
 
 
    function handleOnClick() {
-        return <Navigate to="/sign" />
+        return <useNavigate to="/sign" /> 
    } 
-   {/* ^isnt working */}
+   {/* ^should bring people without account to sign up, isnt working */}
+
+
 
     // if(user){
     //     return <Navigate to="/user" />
     //  }
-    // ^not correctly telling if user is signed in or not, pretty much just mskes login unaccesible
+    // ^not correctly telling if user is signed in or not, pretty much just makes login unaccessible
 
     return (
         <div className="auth-container">
@@ -57,7 +59,7 @@ const Login = ({user}) => {
 
                 <br></br>
                 <br></br>
-                
+
                 <button onClick={handleOnClick}>Don't Have an Account? Sign Up Today!</button>
                 
 
