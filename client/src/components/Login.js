@@ -36,15 +36,15 @@ const Login = ({user}) => {
 
 
    function handleOnClick() {
-        return <useNavigate to="/sign" /> 
-   } 
+    navigate("/sign")
+} 
    {/* ^should bring people without account to sign up, isnt working */}
 
 
 
-    // if(user){
-    //     return <Navigate to="/user" />
-    //  }
+    if(user){
+        navigate("/user")
+    }
     // ^not correctly telling if user is signed in or not, pretty much just makes login unaccessible
 
     return (

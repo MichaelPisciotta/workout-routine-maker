@@ -13,6 +13,7 @@ const LogoutButton = ({user, setUser}) => {
         .then(() => {
             setUser(false)
             navigate("/login")
+            
         })
     }//end of onclick
 

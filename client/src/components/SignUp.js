@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({user, setUser}) => {
     
+    const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConf, setPasswordConf] = useState("");
@@ -32,7 +33,8 @@ const SignUp = ({user, setUser}) => {
                         // setUsername("")
                         // setPassword("")
                         // setPasswordConf("")
-                        return <useNavigate to="/login" />  //not working               
+                        navigate("/login")
+                        //not working               
                     })//end of second .then
                 } else {
                     console.warn("signup not successful")
@@ -41,11 +43,9 @@ const SignUp = ({user, setUser}) => {
 
     } //end of handleSubmit function
 
-    // if(user){
-    //     return <Navigate to="/user" />
-    //  }
-    // ^not working just doesnt allow access to signup
-
+    if(user){
+        navigate("/login")
+     }
     return (
         <div className="auth-container">
             <h1>Sign up Today!</h1>
