@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({user}) => {
 
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState([])
     const [password, setPassword] = useState([])
 
@@ -27,8 +29,9 @@ const Login = ({user}) => {
             console.log(data)
             setUsername("")
             setPassword("")
+            navigate("/user")
         }) //end of second .then
-        return <useNavigate to="/user" /> //go to user page after logging in, NOT WORKING
+        
     } //end of handSubmit
 
 

@@ -1,7 +1,10 @@
 import React from 'react'
+import {useNavigate } from "react-router-dom";
 
 const LogoutButton = ({user, setUser}) => {
     
+    const navigate = useNavigate()
+
     function handleOnClick(){
         fetch("/logout", {
             method: "DELETE"
@@ -9,6 +12,7 @@ const LogoutButton = ({user, setUser}) => {
         .then(r => r.json())
         .then(() => {
             setUser(false)
+            navigate("/login")
         })
     }//end of onclick
 

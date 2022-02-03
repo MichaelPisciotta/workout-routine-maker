@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom"; 
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
@@ -12,8 +12,9 @@ import CreateExercise from "./components/CreateExercise";
 
 
 
-
 function App() {
+  
+  const navigate = useNavigate()
 
   const [user, setUser] = useState(false)
   const [routines, setRoutines] = useState([])
@@ -25,10 +26,13 @@ function App() {
      .then(r => {
        if(r.ok){
          r.json().then( data => {
-           console.log("Logged In:", data.user)
+           console.log("Logged In:", data)
+           setUser(data)
+           navigate("/user")
        })//end of second .then
        } else {
           console.log("No one is logged in")
+          navigate("/login")
        }//end of else
      })//end of first .then
   }, []) //end of useEffect
@@ -73,7 +77,6 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
               <NavBar user={user} setUser={setUser}/>
               <Routes>
                 <Route exact path="/login" element={<Login user={user} setUser={setUser} />} />
@@ -84,7 +87,6 @@ function App() {
                 <Route exact path="/sign" element={<SignUp user={user} setUser={setUser} />} />
                 <Route exact path="*" element={<h1>404 not found</h1>} />
               </Routes>
-      </BrowserRouter>
     </div>
   );
 }
