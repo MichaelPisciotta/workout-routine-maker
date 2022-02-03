@@ -52,10 +52,13 @@ const Login = ({user}) => {
 
                 <label htmlFor="password">Enter Password:</label>
                 <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                
+
                 <button type="submit">Login</button>
 
-                <button onClick={handleOnClick}>Sign Up</button>
+                <br></br>
+                <br></br>
+                
+                <button onClick={handleOnClick}>Don't Have an Account? Sign Up Today!</button>
                 
 
             </form>
