@@ -21,7 +21,6 @@ const CreateRoutine = ({exercises, routines, addRoutine}) => {
             //user_id: owner
         }
         setLoading(true)
-        console.log("about to send POST")
         fetch("/routines", {
             method: "POST",
             headers: {
@@ -31,7 +30,7 @@ const CreateRoutine = ({exercises, routines, addRoutine}) => {
         })
             .then(r => r.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 //debugger;
                 addRoutine(data)
                 setTitle("")

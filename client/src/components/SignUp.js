@@ -55,10 +55,10 @@ const SignUp = ({user, setUser}) => {
                 <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 
                 <label htmlFor="password">Create Password:</label>
-                <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                 <label htmlFor="passwordConf">Confirm Password:</label>
-                <input type="text" id="passwordConf" value={passwordConf} onChange={(e) => setPasswordConf(e.target.value)} />
+                <input type="password" id="passwordConf" value={passwordConf} onChange={(e) => setPasswordConf(e.target.value)} />
                 
                 <button type="submit">Create New Account</button>
             </form>

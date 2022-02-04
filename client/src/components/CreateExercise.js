@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateExercise = ({exercises, addExercise, routines}) => {
 
+    const navigate = useNavigate();
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -14,9 +15,8 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
     const handleChoice = (e) => {
         setChoice(e.target.value)
     } 
-    const pickRoutine = routines.map(routine => <option value={routine.id}  key={routine.id} data-id={routine.id}>{routine.name}</option>)
- {/* ^NOT WORKING */}
-      
+    const pickRoutine = routines.map(routine => <option value={routine.id}  key={routine.id} data-id={routine.id}>{routine.title}</option>)
+
     function handleSubmit(e) {
         e.preventDefault()
         const exerciseObj = { 
@@ -35,9 +35,11 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
             .then(r => r.json())
             .then(data => {
                 //debugger;
+                console.log("data", data)
                 addExercise(data)
                 setName("")
                 setDescription("")
+                //navigate("/routines")
                 setTimeout(() => {
                     setLoading(false)
                 } ,1000)
@@ -55,11 +57,10 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
                 <label htmlFor="description">Description:</label>
                 <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
 
-                <select name="routine" className="form-select" aria-label="Default select example" onChange={handleChoice}>
+                <select name="routine" className="form-select" aria-label="Default select example"  onChange={handleChoice}>
                     <option defaultValue>Select Routine</option>
                     {pickRoutine} 
                 </select>
-                {/* ^NOT WORKING */}
 
 
                 <button type="submit">{loading ? "loading..." : "Create New Exercise"}</button>

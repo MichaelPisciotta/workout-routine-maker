@@ -14,8 +14,14 @@ class ExercisesController < ApplicationController
     end
 
     def create
-        exercise = Exercise.create(exercise_params)
-        render json: exercise, status: :created
+        routine = Routine.find_by(id: params[:routine_id])
+        exercise = Exercise.new(exercise_params)
+        exercise.routine_id = routine.id 
+        if exercise.save     
+            render json: exercise, status: :created
+        else
+            render json: {error: exercise.errors.full_messages}, status: :not_found
+        end
     end 
 
     def update
@@ -45,7 +51,7 @@ private
     end
 
     def exercise_params
-        params.require(:exercises).permit(:name, :description, :routine_id)
+        params.require(:exercise).permit(:name, :description, :routine_id)
     end 
 
     def render_exercise_not_found
