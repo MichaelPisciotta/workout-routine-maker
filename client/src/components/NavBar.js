@@ -5,6 +5,7 @@ import LogoutButton from './LogoutButton'
 
 const NavBar = ({user, setUser}) => {
 
+    console.log("in nav bar", user)
     return (
         <div>
             <nav>      

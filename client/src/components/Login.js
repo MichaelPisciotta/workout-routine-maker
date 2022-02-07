@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({user}) => {
+const Login = ({user, setUser}) => {
 
     const navigate = useNavigate()
 
-    const [username, setUsername] = useState([])
-    const [password, setPassword] = useState([])
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     function handleSubmit(event){
         event.preventDefault();
@@ -26,10 +26,10 @@ const Login = ({user}) => {
         }) //end of fetch 
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             setUsername("")
             setPassword("")
             navigate("/user")
+            setUser(data)
         }) //end of second .then
         
     } //end of handSubmit

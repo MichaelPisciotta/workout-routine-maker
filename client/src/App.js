@@ -50,7 +50,7 @@ function App() {
     fetch("/routines")
       .then((r) => r.json())
       .then(data => {
-        console.log("routines", data)
+        // console.log("routines", data)
         setRoutines(data)
       });
   }, [])
@@ -59,7 +59,7 @@ function App() {
     fetch("/exercises")
       .then((r) => r.json())
       .then(data => {
-        console.log("exercises", data)
+        // console.log("exercises", data)
         setExercises(data)
       });
   }, [])
