@@ -1,7 +1,8 @@
 class RoutinesController < ApplicationController
     
     def index
-        render json: Routine.all, status: 200
+        user = current_user
+        render json: user.routines, status: 200
     end
 
     def show
@@ -34,6 +35,7 @@ class RoutinesController < ApplicationController
             render_routine_not_found
         end
     end
+    #use the session to make sure that user can only update item that shares their id
 
     def destroy
         find_routine
