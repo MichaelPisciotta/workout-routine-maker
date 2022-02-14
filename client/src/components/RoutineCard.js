@@ -1,28 +1,26 @@
 import React from 'react'
-// import ExerciseCard from "./ExerciseCard";
+//import ExerciseCard from "./ExerciseCard";
 
-const RoutineCard = ({routines}) => {
+const RoutineCard = ({routines, exercises, title, description, id}) => {
 
     //need list of associated exercises:
-    // RoutineExercises = exercises.map(exercise.routine_id === routine.id => <ExerciseCard key={exercise.id} />)
+    // exerciseList = exercises.map( exercise => <ExerciseCard key={exercise.id} id={exercise.id} name={exercise.name} description={exercise.description}  />)
 
     return (
         <div>
          <br></br>
          <br></br>
 
-         <h1>Title</h1>
-         <li>Description</li>
+        <h1>{title}</h1>
+        <h4>{description}</h4>
 
-         <li>Exercises:</li>
-         <li>Exercise 1</li>
-         <li>Exercise 2</li>
-         <li>Exercise 3</li>
+         {/* {exerciseList} */}
 
-         {/* {RoutineExercises} */}
-
+         <br></br>
          <button>Delete</button>
          <button>Update</button>
+         {/* <button onClick={handleDelete}>Delete</button>
+         <button onClick={handleUpdate}>Update</button> */}
         </div>
     )
 }

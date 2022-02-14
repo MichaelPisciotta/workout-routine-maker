@@ -8,6 +8,7 @@ import CreateRoutine from "./components/CreateRoutine";
 import RoutineList from "./components/RoutineList";
 import User from "./components/User";
 import CreateExercise from "./components/CreateExercise";
+import ExerciseList from "./components/ExerciseList";
 
 
 
@@ -83,7 +84,8 @@ function App() {
                 <Route exact path="/user" element={<User user={user} />} />
                 <Route exact path="/routine/new" element={<CreateRoutine addRoutine={addRoutine} routines={routines} exercises={exercises}/>} user={user} />
                 <Route exact path="/exercise/new" element={<CreateExercise addExercise={addExercise} exercises={exercises} setExercises={setExercises} routines={routines}/>} />
-                <Route exact path="/routines" element={<RoutineList routines={routines} user={user} />} />
+                <Route exact path="/routines" element={<RoutineList routines={routines} user={user} exercises={exercises} />} />
+                <Route exact path="/exercises" element={<ExerciseList exercises={exercises} user={user} />} />
                 <Route exact path="/sign" element={<SignUp user={user} setUser={setUser} />} />
                 <Route exact path="*" element={<h1>404 not found</h1>} />
               </Routes>
