@@ -1,6 +1,7 @@
 class RoutinesController < ApplicationController
     
     def index
+        #byebug
         user = current_user
         render json: user.routines, status: 200
     end

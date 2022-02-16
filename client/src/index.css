@@ -59,3 +59,7 @@ nav a.active {
 .App{
   background-color: rgb(243, 229, 229);
 }
+
+.exercise-card{
+  border: 2px dotted;
+}
