@@ -1,7 +1,10 @@
 class ExercisesController < ApplicationController
     
     def index
-        render json: Exercise.all, status: 200
+        #render json: Exercise.all, status: 200
+        user = current_user
+        render json: user.exercises, status: 200
+
     end
 
     def show

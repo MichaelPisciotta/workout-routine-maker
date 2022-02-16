@@ -6,8 +6,8 @@ nick = User.create(username: "Nick", password:"Nick", password_confirmation: "Ni
 kevin = User.create(username: "Kevin", password:"Kevin", password_confirmation: "Kevin")
 
 mike_upper = Routine.create(title: "Upper", description: "Upper body exercises", user_id: mike.id )
-nick_full = Routine.create(title: "Lower", description: "Lower body exercises", user_id: nick.id)
-kevin_lower= Routine.create(title: "Full", description: "Full body routine", user_id: kevin.id )
+kevin_lower= Routine.create(title: "Lower", description: "Lower body exercises", user_id: kevin.id )
+nick_full = Routine.create(title: "Full", description: "Full body routine", user_id: nick.id)
 
 
 Exercise.create(name: "Push-up", description: "use chest, triceps and shoulders to push body off ground", routine_id: mike_upper.id)
