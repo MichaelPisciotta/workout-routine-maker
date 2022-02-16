@@ -7,7 +7,7 @@ const RoutineCard = ({routines, exercises, title, description, id}) => {
     const exerciseList = exercises.map( exercise => <ExerciseCard key={exercise.id} id={exercise.id} name={exercise.name} description={exercise.description} /> )
 
     return (
-        <div>
+        <div className="routine-card">
          <br></br>
          <br></br>
 
@@ -26,20 +26,6 @@ const RoutineCard = ({routines, exercises, title, description, id}) => {
          {exerciseList}
 
          
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
-         <br></br>
          <br></br>
          <br></br>
         </div>
