@@ -2,9 +2,9 @@ import React from 'react'
 import RoutineCard from "./RoutineCard";
 import { Navigate } from 'react-router-dom';
 
-const RoutineList = ({routines, user, exercises}) => {
+const RoutineList = ({routines, user, exercises, deleteRoutine, deleteExercise}) => {
     console.log("routines", routines)
-    const routineList = routines.map(routine => <RoutineCard key={routine.id} title={routine.title} description={routine.description} id={routine.id} exercises={exercises} />)
+    const routineList = routines.map(routine => <RoutineCard key={routine.id} title={routine.title} description={routine.description} id={routine.id} exercises={exercises} deleteRoutine={deleteRoutine} deleteExercise={deleteExercise} />)
 
     // if(!user){
     //    return <Navigate to="/user" />

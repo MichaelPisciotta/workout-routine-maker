@@ -3,8 +3,9 @@ class RoutinesController < ApplicationController
 
 
     def index
-        #byebug
+
         user = current_user
+        routines = user.routines
         #find_routine
         #render json: user.routines, include: :exercises, status: 200
         render json: user.routines, status: 200
