@@ -47,13 +47,18 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("/routines")
+    console.error(user)
+    if(user && user.id){ //this equals user?.id
+      fetch("/routines")
       .then((r) => r.json())
       .then(data => {
-        console.log("routines", data)
+        console.log("routines,routines,routinesroutinesroutinesroutinesroutinesroutinesroutinesroutinesroutines", data)
         setRoutines(data)
       });
-  }, [])
+    }else{
+      setRoutines([])
+    }
+  }, [user])
 
   useEffect(() => {
     fetch("/exercises")

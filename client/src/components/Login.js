@@ -29,7 +29,7 @@ const Login = ({user, setUser}) => {
             setUsername("")
             setPassword("")
             navigate("/user")
-            setUser(data)
+            setUser(data.user)
         }) //end of second .then
         
     } //end of handSubmit
