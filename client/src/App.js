@@ -52,7 +52,6 @@ function App() {
       fetch("/routines")
       .then((r) => r.json())
       .then(data => {
-        console.log("routines,routines,routinesroutinesroutinesroutinesroutinesroutinesroutinesroutinesroutines", data)
         setRoutines(data)
       });
     }else{
@@ -73,6 +72,8 @@ function App() {
     const updatedRoutines = [...routines, newRoutine]
     setRoutines(updatedRoutines)
   }
+
+//state for exercises should be held inside of routine card not app.js
 
   function addExercise(newExercise){
     const updatedExercises = [...exercises, newExercise]

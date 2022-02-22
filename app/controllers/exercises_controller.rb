@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
-    
+    before_action :find_exercise, only: [:show, :update, :destroy]
+
     def index
         #render json: Exercise.all, status: 200
         user = current_user
@@ -8,9 +9,8 @@ class ExercisesController < ApplicationController
     end
 
     def show
-        find_exercise
-        if exercise
-            render json: exercise, status: 200
+        if @exercise
+            render json: @exercise, status: 200
         else
             render_exercise_not_found
         end
@@ -28,19 +28,17 @@ class ExercisesController < ApplicationController
     end 
 
     def update
-        find_exercise
-        if exercise
-            exercise.update(exercise_params)
-            render json: exercise, status: :accepted
+        if @exercise
+            @exercise.update(exercise_params)
+            render json: @exercise, status: :accepted
         else
             render_exercise_not_found
         end
     end
 
     def destroy
-        find_exercise
-        if exercise 
-        exercise.destroy
+        if @exercise 
+        @exercise.destroy
         head :no_content
         else
             render_exercise_not_found
@@ -50,7 +48,7 @@ class ExercisesController < ApplicationController
 private 
 
     def find_exercise
-        exercise = Exercise.find(params[:id])
+        @exercise = Exercise.find(params[:id])
     end
 
     def exercise_params

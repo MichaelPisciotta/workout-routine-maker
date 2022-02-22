@@ -7,7 +7,7 @@ const RoutineCard = ({routines, exercises, title, description, id, deleteRoutine
     const exerciseList = exercises.map( exercise => <ExerciseCard key={exercise.id} id={exercise.id} name={exercise.name} description={exercise.description} deleteExercise={deleteExercise} /> )
 
     function handleDelete() {
-        fetch("/routines/${id}", {
+        fetch(`/routines/${id}`, {
             method: "DELETE"
         })
         .then((r) => { 

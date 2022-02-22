@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-    
+    before_action :find_routine, only: [:show, :update, :destroy]
 
 
     def index
@@ -13,9 +13,8 @@ class RoutinesController < ApplicationController
     end
 
     def show
-        find_routine
-        if routine 
-            render json: routine, status: 200
+        if @routine 
+            render json: @routine, status: 200
         else
             render_routine_not_found
         end
@@ -34,10 +33,9 @@ class RoutinesController < ApplicationController
     end 
 
     def update
-        find_routine
-        if routine
-            routine.update(routine_params)
-            render json: routine, status: :accepted
+        if @routine
+            @routine.update(routine_params)
+            render json: @routine, status: :accepted
         else
             render_routine_not_found
         end
@@ -45,9 +43,8 @@ class RoutinesController < ApplicationController
     #use the session to make sure that user can only update item that shares their id
 
     def destroy
-        find_routine
-        if routine 
-            routine.destroy
+        if @routine 
+            @routine.destroy
             head :no_content
         else
             render_routine_not_found
@@ -57,7 +54,7 @@ class RoutinesController < ApplicationController
 private 
 
     def find_routine
-        routine = Routine.find(params[:id])
+        @routine = Routine.find(params[:id])
     end
 
     def routine_params

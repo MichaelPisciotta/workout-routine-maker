@@ -6,7 +6,7 @@ const ExerciseCard = ({exercises, name, description, id, deleteExercise}) => {
 
 
     function handleDelete() {
-        fetch("/exercises/${id}", {
+        fetch(`/exercises/${id}`, {
             method: "DELETE"
         })
         .then((r) => { 
