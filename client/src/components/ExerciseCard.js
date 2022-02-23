@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ExerciseCard = ({exercises, name, description, id, deleteExercise}) => {
-    console.log("name", name)
-    console.log("description", description)
+//would have to remove deleteExercise function
+
+const ExerciseCard = ({setExercises, exercises, name, description, id, deleteExercise}) => {
 
 
     function handleDelete() {
@@ -15,6 +15,11 @@ const ExerciseCard = ({exercises, name, description, id, deleteExercise}) => {
           .then(data => console.log(data));
            deleteExercise(id)
     }
+
+    function deleteExercise(id) {
+        const updatedExercises = exercises.filter(exercise => exercise.id !== id)
+        setExercises(updatedExercises)
+      }
 
     return (
         <div>

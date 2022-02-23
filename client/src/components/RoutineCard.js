@@ -1,11 +1,29 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import ExerciseCard from "./ExerciseCard";
 
-const RoutineCard = ({routines, exercises, title, description, id, deleteRoutine, deleteExercise}) => {
-    console.log("exercises", exercises)
+//would have to delete useEffect and exercises state, 
 
-    const exerciseList = exercises.map( exercise => <ExerciseCard key={exercise.id} id={exercise.id} name={exercise.name} description={exercise.description} deleteExercise={deleteExercise} /> )
+const RoutineCard = ({ routines, title, description, id, deleteRoutine, deleteExercise}) => {
 
+
+const [exercises, setExercises] = useState([])
+
+    useEffect(() => {
+        fetch("/exercises")
+          .then((r) => r.json())
+          .then(data => {
+            // console.log("exercises", data)
+            setExercises(data)
+          });
+      }, [])
+
+    const currentRoutineExercises = exercises.filter(exercise => id ===  exercise.routine.id)
+    console.log("currentRoutineExercises", currentRoutineExercises, id)
+
+    const exerciseList = currentRoutineExercises.map( exercise => <ExerciseCard key={exercise.id} id={exercise.id} name={exercise.name} description={exercise.description} deleteExercise={deleteExercise} exercises={exercises} /> )
+    
+  
+    
     function handleDelete() {
         fetch(`/routines/${id}`, {
             method: "DELETE"
@@ -30,11 +48,7 @@ const RoutineCard = ({routines, exercises, title, description, id, deleteRoutine
             <br></br>
             <br></br>
             <br></br>
-
-
             {exerciseList}
-
-            
             <br></br>
             <br></br>
         </div>

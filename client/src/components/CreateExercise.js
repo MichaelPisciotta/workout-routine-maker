@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CreateExercise = ({exercises, addExercise, routines}) => {
+//would have to replace whats inside brackets with whats under and delete the addExercise function
+//where should exercises come from to get them in here?
+const CreateExercise = ({exercises, setExercises, routines}) => {
+//exercises, addExercise, routines
 
     const navigate = useNavigate();
 
@@ -36,7 +39,7 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
             .then(data => {
                 //debugger;
                 console.log("data", data)
-                addExercise(data)
+                // addExercise(data)
                 setName("")
                 setDescription("")
                 //navigate("/routines")
@@ -44,6 +47,10 @@ const CreateExercise = ({exercises, addExercise, routines}) => {
                     setLoading(false)
                 } ,1000)
             })   
+            // function addExercise(newExercise){
+            //     const updatedExercises = [...exercises, newExercise]
+            //     setExercises(updatedExercises)
+            //   }
     };
 
     return (
