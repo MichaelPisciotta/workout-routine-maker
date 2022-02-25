@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ExerciseCard from "./ExerciseCard";
-
-//would have to delete useEffect and exercises state,
+import { useNavigate } from "react-router-dom";
+import EditRoutineForm from "./EditRoutineForm";
 
 const RoutineCard = ({
   routines,
@@ -12,13 +12,14 @@ const RoutineCard = ({
   deleteExercise,
   updateRoutine,
 }) => {
+  const navigate = useNavigate();
   const [exercises, setExercises] = useState([]);
-
+  const [displayEditForm, setDisplayEditForm] = useState(false);
+  //space
   useEffect(() => {
     fetch("/exercises")
       .then((r) => r.json())
       .then((data) => {
-        // console.log("exercises", data)
         setExercises(data);
       });
   }, []);
@@ -26,8 +27,6 @@ const RoutineCard = ({
   const currentRoutineExercises = exercises.filter(
     (exercise) => id === exercise.routine.id
   );
-  console.log("currentRoutineExercises", currentRoutineExercises, id);
-
   const exerciseList = currentRoutineExercises.map((exercise) => (
     <ExerciseCard
       key={exercise.id}
@@ -52,16 +51,21 @@ const RoutineCard = ({
     deleteRoutine(id);
   }
 
-  function handleUpdate() {
-    fetch(`/routines/${id}`, {
-      method: "PATCH",
-    })
-      .then((r) => {
-        //debugger
-        return r.json();
-      })
-      .then((data) => console.log(data));
-    updateRoutine(id);
+  function editDisplay() {
+    if (displayEditForm) {
+      console.log(displayEditForm);
+      return <EditRoutineForm />;
+    } else {
+      return (
+        <button
+          onClick={() => {
+            setDisplayEditForm(true);
+          }}
+        >
+          Update
+        </button>
+      );
+    }
   }
 
   return (
@@ -73,7 +77,8 @@ const RoutineCard = ({
       <h4>{description}</h4>
 
       <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleUpdate}>Update</button>
+      {editDisplay()}
+
       <br></br>
       <br></br>
       <br></br>

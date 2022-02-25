@@ -8,15 +8,13 @@ import CreateRoutine from "./components/CreateRoutine";
 import RoutineList from "./components/RoutineList";
 import User from "./components/User";
 import CreateExercise from "./components/CreateExercise";
-
-//would have to uncomment out sections and delete the new links
+import EditRoutineForm from "./components/EditRoutineForm";
 
 function App() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(false);
   const [routines, setRoutines] = useState([]);
-  //const [exercises, setExercises] = useState([])
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -45,7 +43,7 @@ function App() {
   useEffect(() => {
     console.error(user);
     if (user && user.id) {
-      //this equals user?.id
+      //this is the same as user?.id
       fetch("/routines")
         .then((r) => r.json())
         .then((data) => {
@@ -56,41 +54,15 @@ function App() {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   fetch("/exercises")
-  //     .then((r) => r.json())
-  //     .then(data => {
-  //       // console.log("exercises", data)
-  //       setExercises(data)
-  //     });
-  // }, [])
-
   function addRoutine(newRoutine) {
     const updatedRoutines = [...routines, newRoutine];
     setRoutines(updatedRoutines);
   }
 
-  //state for exercises should be held inside of routine card not app.js
-
-  // function addExercise(newExercise){
-  //   const updatedExercises = [...exercises, newExercise]
-  //   setExercises(updatedExercises)
-  // }
-
   function deleteRoutine(id) {
     const updatedRoutines = routines.filter((routine) => routine.id !== id);
     setRoutines(updatedRoutines);
   }
-
-  function updateRoutine(id) {
-    const updatedRoutines = willneedtofillthisin;
-    setRoutines(updatedRoutines);
-  }
-
-  // function deleteExercise(id) {
-  //   const updatedExercises = exercises.filter(exercise => exercise.id !== id)
-  //   setExercises(updatedExercises)
-  // }
 
   return (
     <div className="App">
@@ -129,7 +101,21 @@ function App() {
               routines={routines}
               user={user}
               deleteRoutine={deleteRoutine}
-              updateRoutine={updateRoutine}
+              //updateRoutine={updateRoutine}
+            />
+          }
+        />
+
+        <Route
+          exact
+          path="/routines/edit"
+          element={
+            <EditRoutineForm
+              routines={routines}
+              user={user}
+              deleteRoutine={deleteRoutine}
+              addRoutine={addRoutine}
+              //updateRoutine={updateRoutine}
             />
           }
         />
