@@ -60,6 +60,8 @@ const RoutineCard = ({
         <EditRoutineForm
           routines={routines}
           routine={routine} //equal to state variable
+          setRoutine={setRoutine}
+          setDisplayEditForm={setDisplayEditForm}
         />
       );
     } else {

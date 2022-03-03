@@ -1,22 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EditRoutineForm = ({ routines, routine, editRoutine }) => {
+const EditRoutineForm = ({
+  routines,
+  routine,
+  setRoutine,
+  editRoutine,
+  setDisplayEditForm,
+}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
-  //need some way of specifying which routine is being edited ---attempted on line 12
+  //I dont know what to send into handlesubmit
   function handleSubmit() {
-    //this will handle what happens when update button is clicked
-    //const currentRoutine = routines.filter((routine) => routine.id == id);
     editRoutine(routine);
   }
 
   function editRoutine(routine) {
-    //   const updatedRoutines = routines.do - something - idk - what;
-    //   setRoutines(updatedRoutines);
     console.log(routine);
+    fetch(`/routines/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(routine),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setRoutine(data);
+        setDisplayEditForm(false);
+      });
   }
 
   return (
