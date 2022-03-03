@@ -15,6 +15,7 @@ const RoutineCard = ({
   const navigate = useNavigate();
   const [exercises, setExercises] = useState([]);
   const [displayEditForm, setDisplayEditForm] = useState(false);
+  const [routine, setRoutine] = useState([]); //made just so i could send "routine" into editRoutineForm like in video, not sure why
   //space
   useEffect(() => {
     fetch("/exercises")
@@ -52,9 +53,15 @@ const RoutineCard = ({
   }
 
   function editDisplay() {
+    //if displayEditForm is true, which is currently isn't, display form, otherwise display this button which when clicked changes displayEditForm to true.
     if (displayEditForm) {
       console.log(displayEditForm);
-      return <EditRoutineForm />;
+      return (
+        <EditRoutineForm
+          routines={routines}
+          routine={routine} //equal to state variable
+        />
+      );
     } else {
       return (
         <button
@@ -78,6 +85,7 @@ const RoutineCard = ({
 
       <button onClick={handleDelete}>Delete</button>
       {editDisplay()}
+      {/* ^this represents the function above the return */}
 
       <br></br>
       <br></br>
