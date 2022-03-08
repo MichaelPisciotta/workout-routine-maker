@@ -1,38 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-//would have to remove deleteExercise function
+const ExerciseCard = ({
+  setExercises,
+  exercises,
+  name,
+  description,
+  id,
+  deleteExercise,
+}) => {
+  const [displayEditForm, setDisplayEditForm] = useState(false);
+  const navigate = useNavigate();
 
-const ExerciseCard = ({setExercises, exercises, name, description, id, deleteExercise}) => {
+  function handleDelete() {
+    fetch(`/exercises/${id}`, {
+      method: "DELETE",
+    })
+      .then((r) => {
+        //debugger
+        return r.json();
+      })
+      .then((data) => console.log(data));
+    deleteExercise(id);
+  }
 
+  function deleteExercise(id) {
+    const updatedExercises = exercises.filter((exercise) => exercise.id !== id);
+    setExercises(updatedExercises);
+  }
 
-    function handleDelete() {
-        fetch(`/exercises/${id}`, {
-            method: "DELETE"
-        })
-        .then((r) => { 
-            //debugger
-           return r.json()})
-          .then(data => console.log(data));
-           deleteExercise(id)
-    }
+  function editExercise(name, description) {
+    const updatedExercise = { name, description };
+    fetch(`/exercises/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(updatedExercise),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        updateExercises(data);
+        setDisplayEditForm(false);
+        navigate("/routines");
+      });
+  }
 
-    function deleteExercise(id) {
-        const updatedExercises = exercises.filter(exercise => exercise.id !== id)
-        setExercises(updatedExercises)
+  function updateExercises(newExercise) {
+    const updatedExercises = exercises.map((exercise) => {
+      if (exercise.id == newExercise.id) {
+        return newExercise;
+      } else {
+        return exercise;
       }
+    });
+    setExercises(updatedExercises);
+  }
 
-    return (
-        <div>
-            <br></br>
-            <div className="exercise-card">
-                <h4>{name}</h4> 
-                <h5>{description}</h5> 
-                <button onClick={handleDelete}>Delete</button>
-                {/* <button onClick={handleUpdate}>Update</button> */}
-            </div>
-            <br></br>
-        </div>
-    )
-}
+  function editDisplay() {
+    if (displayEditForm) {
+      //return <EditExerciseForm editExercise={editExercise} id={id} />;
+    } else {
+      return (
+        <button
+          onClick={() => {
+            setDisplayEditForm(true);
+          }}
+        >
+          Update
+        </button>
+      );
+    }
+  }
 
-export default ExerciseCard
+  return (
+    <div>
+      <br></br>
+      <div className="exercise-card">
+        <h4>{name}</h4>
+        <h5>{description}</h5>
+        <button onClick={handleDelete}>Delete</button>
+        {editDisplay()}
+      </div>
+      <br></br>
+    </div>
+  );
+};
+
+export default ExerciseCard;
