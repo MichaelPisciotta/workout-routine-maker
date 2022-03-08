@@ -1,38 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EditRoutineForm = ({
-  routines,
-  routine,
-  setRoutine,
-  editRoutine,
-  setDisplayEditForm,
-}) => {
+const EditRoutineForm = ({ routines, editRoutine }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
-  //I dont know what to send into handlesubmit
   function handleSubmit() {
-    editRoutine(routine);
-  }
-
-  function editRoutine(routine) {
-    console.log(routine);
-    fetch(`/routines/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(routine),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setRoutine(data);
-        setDisplayEditForm(false);
-      });
-  }
+    editRoutine();
+    //I dont know what to send into handlesubmit, what to do inside of it or what to send editRoutine
+  } //not sure how to specify specific routine that is being sent in
 
   return (
     <div>

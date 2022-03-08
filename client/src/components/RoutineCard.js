@@ -10,12 +10,11 @@ const RoutineCard = ({
   id,
   deleteRoutine,
   deleteExercise,
-  updateRoutine,
 }) => {
   const navigate = useNavigate();
   const [exercises, setExercises] = useState([]);
   const [displayEditForm, setDisplayEditForm] = useState(false);
-  const [routine, setRoutine] = useState([]); //made just so i could send "routine" into editRoutineForm like in video, not sure why
+  const [routine, setRoutine] = useState([]); //made just so i could send "routine" into editRoutine function like in video, not sure why
   //space
   useEffect(() => {
     fetch("/exercises")
@@ -52,18 +51,29 @@ const RoutineCard = ({
     deleteRoutine(id);
   }
 
+  function editRoutine() {
+    //^not sure what should be put inside ()
+    //const updatedRoutine = //do I need this object to stringify below?
+    fetch(`/routines/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(), //not sure what should go in here
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        //setRoutine(data); --- I don't have a state variable to update a routine. Not sure what to do
+        setDisplayEditForm(false);
+        navigate("/routines");
+      });
+  }
+
   function editDisplay() {
     //if displayEditForm is true, which is currently isn't, display form, otherwise display this button which when clicked changes displayEditForm to true.
     if (displayEditForm) {
-      console.log(displayEditForm);
-      return (
-        <EditRoutineForm
-          routines={routines}
-          routine={routine} //equal to state variable
-          setRoutine={setRoutine}
-          setDisplayEditForm={setDisplayEditForm}
-        />
-      );
+      return <EditRoutineForm routines={routines} editRoutine={editRoutine} />;
     } else {
       return (
         <button
