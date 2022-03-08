@@ -10,6 +10,7 @@ const RoutineCard = ({
   id,
   deleteRoutine,
   deleteExercise,
+  updateRoutines,
 }) => {
   const navigate = useNavigate();
   const [exercises, setExercises] = useState([]);
@@ -51,20 +52,20 @@ const RoutineCard = ({
     deleteRoutine(id);
   }
 
-  function editRoutine() {
+  function editRoutine(title, description) {
     //^not sure what should be put inside ()
-    //const updatedRoutine = //do I need this object to stringify below?
+    const updatedRoutine = { title, description };
     fetch(`/routines/${id}`, {
       method: "PATCH",
       headers: {
         "content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(), //not sure what should go in here
+      body: JSON.stringify(updatedRoutine), //not sure what should go in here
     })
       .then((r) => r.json())
       .then((data) => {
-        //setRoutine(data); --- I don't have a state variable to update a routine. Not sure what to do
+        updateRoutines(data);
         setDisplayEditForm(false);
         navigate("/routines");
       });
@@ -73,7 +74,13 @@ const RoutineCard = ({
   function editDisplay() {
     //if displayEditForm is true, which is currently isn't, display form, otherwise display this button which when clicked changes displayEditForm to true.
     if (displayEditForm) {
-      return <EditRoutineForm routines={routines} editRoutine={editRoutine} />;
+      return (
+        <EditRoutineForm
+          routines={routines}
+          editRoutine={editRoutine}
+          id={id}
+        />
+      );
     } else {
       return (
         <button

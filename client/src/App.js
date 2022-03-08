@@ -64,6 +64,17 @@ function App() {
     setRoutines(updatedRoutines);
   }
 
+  function updateRoutines(newRoutine) {
+    const updatedRoutines = routines.map((routine) => {
+      if (routine.id == newRoutine.id) {
+        return newRoutine;
+      } else {
+        return routine;
+      }
+    });
+    setRoutines(updatedRoutines);
+  }
+
   return (
     <div className="App">
       <NavBar user={user} setUser={setUser} />
@@ -101,6 +112,7 @@ function App() {
               routines={routines}
               user={user}
               deleteRoutine={deleteRoutine}
+              updateRoutines={updateRoutines}
               //updateRoutine={updateRoutine}
             />
           }

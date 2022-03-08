@@ -9,6 +9,7 @@ const RoutineList = ({
   deleteRoutine,
   deleteExercise,
   updateRoutine,
+  updateRoutines,
 }) => {
   const routineList = routines.map((routine) => (
     <RoutineCard
@@ -20,6 +21,7 @@ const RoutineList = ({
       deleteRoutine={deleteRoutine}
       deleteExercise={deleteExercise}
       updateRoutine={updateRoutine}
+      updateRoutines={updateRoutines}
     />
   ));
 
