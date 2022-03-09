@@ -53,7 +53,6 @@ const RoutineCard = ({
   }
 
   function editRoutine(title, description) {
-    //^not sure what should be put inside ()
     const updatedRoutine = { title, description };
     fetch(`/routines/${id}`, {
       method: "PATCH",
@@ -61,7 +60,7 @@ const RoutineCard = ({
         "content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(updatedRoutine), //not sure what should go in here
+      body: JSON.stringify(updatedRoutine),
     })
       .then((r) => r.json())
       .then((data) => {

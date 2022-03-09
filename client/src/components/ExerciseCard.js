@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EditExerciseForm from "./EditExerciseForm";
 
 const ExerciseCard = ({
   setExercises,
@@ -9,7 +10,7 @@ const ExerciseCard = ({
   id,
   deleteExercise,
 }) => {
-  const [displayEditForm, setDisplayEditForm] = useState(false);
+  const [displayEditExercise, setDisplayEditExercise] = useState(false);
   const navigate = useNavigate();
 
   function handleDelete() {
@@ -42,7 +43,7 @@ const ExerciseCard = ({
       .then((r) => r.json())
       .then((data) => {
         updateExercises(data);
-        setDisplayEditForm(false);
+        setDisplayEditExercise(false);
         navigate("/routines");
       });
   }
@@ -59,13 +60,13 @@ const ExerciseCard = ({
   }
 
   function editDisplay() {
-    if (displayEditForm) {
-      //return <EditExerciseForm editExercise={editExercise} id={id} />;
+    if (displayEditExercise) {
+      return <EditExerciseForm editExercise={editExercise} id={id} />;
     } else {
       return (
         <button
           onClick={() => {
-            setDisplayEditForm(true);
+            setDisplayEditExercise(true);
           }}
         >
           Update

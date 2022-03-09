@@ -8,7 +8,6 @@ const RoutineList = ({
   exercises,
   deleteRoutine,
   deleteExercise,
-  updateRoutine,
   updateRoutines,
 }) => {
   const routineList = routines.map((routine) => (
@@ -20,7 +19,6 @@ const RoutineList = ({
       exercises={exercises}
       deleteRoutine={deleteRoutine}
       deleteExercise={deleteExercise}
-      updateRoutine={updateRoutine}
       updateRoutines={updateRoutines}
     />
   ));
